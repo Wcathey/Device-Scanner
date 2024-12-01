@@ -12,21 +12,21 @@ cloudinary.config(
     secure = True
 )
 
-upload_routes = Blueprint('uploads', __name__)
+transfer_routes = Blueprint('transfers', __name__)
 
-@upload_routes.route('/')
+@transfer_routes.route('/')
 @login_required
 def images():
     #use query.all on the upload model to get public Ids
     return #dictionary of public Ids
 
-@upload_routes.route('/<int:id>')
+@transfer_routes.route('/<int:id>')
 @login_required
 def image(id):
     # query.get image by id
     return #image.to_dict() dict of images
 
-@upload_routes.route('/upload', methods=['POST'])
+@transfer_routes.route('/upload', methods=['POST'])
 @login_required
 def upload_image():
     if 'file' not in request.files:
