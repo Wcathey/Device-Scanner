@@ -2,17 +2,16 @@ from .db import db, environment, SCHEMA
 
 
 
-class Image(db.model):
+class Image(db.Model):
     __tablename__ = 'images'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    asset_folder = db.Column(db.String, nullable=False)
+    asset_folder = db.Column(db.String)
     bytes = db.Column(db.Integer, nullable=False)
     display_name = db.Column(db.String, nullable=False)
-    eTag = db.Column(db.String, nullable=False)
     format = db.Column(db.String, nullable=False)
     width = db.Column(db.Integer, nullable=False)
     height = db.Column(db.Integer, nullable=False)
@@ -40,7 +39,6 @@ class Image(db.model):
             'asset_folder': self.asset_folder,
             'bytes': self.bytes,
             'display_name': self.display_name,
-            'eTag': self.eTag,
             'format': self.format,
             'width': self.width,
             'height': self.height,

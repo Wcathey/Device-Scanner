@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
-import uuid
+from app.models import db, Image
+
 import cloudinary
 from cloudinary.uploader import upload
 from ..config import Config
@@ -27,7 +28,6 @@ def image(id):
     return #image.to_dict() dict of images
 
 @transfer_routes.route('/upload', methods=['POST'])
-@login_required
 def upload_image():
     if 'file' not in request.files:
         return jsonify({'error': 'No file found'})
@@ -37,12 +37,23 @@ def upload_image():
         return jsonify({'error': 'No selected file'})
 
     try:
-        generated_UUID = uuid.uuid4()
-        result = upload(image,
-                asset_folder = 'userImages',
-                public_id = generated_UUID,
-                overwrite = True
-                        )
-        return jsonify(result)
+        result = upload(image)
+        data = Image(
+                asset_folder = result["asset_folder"],
+                bytes = result["bytes"],
+                display_name = result["display_name"],
+                format = result["format"],
+                width = result["width"],
+                height = result["height"],
+                original_filename = result["original_filename"],
+                public_id = result["public_id"],
+                resource_type = result["resource_type"],
+                secure_url = result["secure_url"],
+                signature = result["signature"]
+        )
+        db.session.add(data)
+        db.session.commit()
+        return data.to_dict()
+
     except Exception as e:
         return jsonify({'error': str(e)})
