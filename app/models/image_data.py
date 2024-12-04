@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA
+from sqlalchemy.orm import relationship
 
 
 
@@ -20,6 +21,9 @@ class Image(db.Model):
     resource_type = db.Column(db.String, nullable=False)
     secure_url = db.Column(db.String, nullable=False)
     signature = db.Column(db.String, nullable=False)
+    scans = relationship('Scan', back_populates='image', cascade="all, delete-orphan, save-update")
+    comments = relationship('Comment', back_populates='image', cascade="all, delete-orphan, save-update")
+    mentions = relationship('Mention', back_populates='image', cascade="all, delete-orphan, save-update")
 
     @property
     def publicId(self):
