@@ -1,9 +1,12 @@
+import cloudinary.api
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
 from app.models import db, Image
 
 import cloudinary
-from cloudinary.uploader import upload
+
+from cloudinary.uploader import upload, destroy
+
 from ..config import Config
 
 cloudinary.config(
@@ -15,19 +18,43 @@ cloudinary.config(
 
 transfer_routes = Blueprint('transfers', __name__)
 
+#get image data from database
 @transfer_routes.route('/')
-@login_required
 def images():
-    #use query.all on the upload model to get public Ids
-    return #dictionary of public Ids
+    images = Image.query.all()
+    return {'images': [image.to_dict() for image in images]}
 
+#get image data of specified id from database
 @transfer_routes.route('/<int:id>')
-@login_required
-def image(id):
-    # query.get image by id
-    return #image.to_dict() dict of images
+def getImage(id):
+    image = Image.query.get(id)
+    return image.to_dict()
 
+#get image resource from cloud including data not used in local database
+@transfer_routes.route('/<int:id>/resource')
+def getImageResource(id):
+    image = Image.query.get(id)
+    if image:
+        publicId = image.to_dict()["public_id"]
+        resource = cloudinary.api.resource(publicId)
+        return resource
+
+#delete image data from database and remove from cloud using public id
+@transfer_routes.route('/<int:id>', methods=['DELETE'])
+def deleteImage(id):
+    image = Image.query.get(id)
+
+    if image:
+        publicId = image.to_dict()["public_id"]
+        destroy(publicId)
+        db.session.delete(image)
+        db.session.commit()
+        return jsonify({"message": "successfully deleted image"})
+
+
+#upload image to cloudinary and extract data to insert into database
 @transfer_routes.route('/upload', methods=['POST'])
+
 def upload_image():
     if 'file' not in request.files:
         return jsonify({'error': 'No file found'})
@@ -38,6 +65,7 @@ def upload_image():
 
     try:
         result = upload(image)
+
         data = Image(
                 asset_folder = result["asset_folder"],
                 bytes = result["bytes"],
