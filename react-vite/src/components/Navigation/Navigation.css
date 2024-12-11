@@ -1,3 +1,60 @@
+
 .profile-dropdown {
   position: absolute;
+}
+
+.nav-container {
+  border-bottom: 3px solid #E5E9EC;
+  background-color: #5B7C99;
+  box-shadow: 0px 5px 20px 0px #5B7C99;
+
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+
+
+}
+
+.nav-list a {
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+
+#nav-title {
+  margin-top: 1rem;
+
+}
+
+#nav-title h1{
+  color: #E5E9EC;
+  text-align: center;
+  padding: 1rem;
+  
+
+
+}
+
+.nav-search-bar {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.nav-search-bar input {
+  width: 50%;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.nav-search-bar label{
+  font-size: 18px;
+  font-weight: bold;
 }

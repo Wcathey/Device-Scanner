@@ -1,0 +1,37 @@
+.hp-container {
+    width: 100%;
+    height: 100%;
+}
+
+.hp-side-bar {
+    margin-top: 5rem;
+    background-color: #5B7C99;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    width: fit-content;
+    height: 830px;
+    padding: 1rem;
+    text-align: right;
+
+}
+
+
+.icon {
+    color: black;
+    font-size: 30px;
+    
+}
+
+.hp-sb-list {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+}
+
+.hp-sb-list a{
+    color: #E5E9EC;
+    font-weight: bold;
+    font-size: 20px;
+
+
+}

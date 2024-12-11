@@ -28,3 +28,7 @@
 
 scan images. to upload them and store the data and image into the cloud.
 
+permissions by image or tag
+instead of mentions use tags to group things together to have a better search query
+ if tag doesnt exist it gets created automatically
+ 
