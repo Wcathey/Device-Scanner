@@ -16,23 +16,23 @@ cloudinary.config(
     secure = True
 )
 
-upload_routes = Blueprint('uploads', __name__)
+capture_routes = Blueprint('captures', __name__)
 
 #get image data from database
-@upload_routes.route('/')
-def images():
+@capture_routes.route('/')
+def capture():
     captures = Capture.query.all()
     return {'captures': [captures.to_dict() for capture in captures]}
 
 #get image data of specified id from database
-@upload_routes.route('/<int:id>')
-def getImage(id):
+@capture_routes.route('/<int:id>')
+def getCapture(id):
     capture = Capture.query.get(id)
     return capture.to_dict()
 
 #get image resource from cloud including data not used in local database
-@upload_routes.route('/<int:id>/resource')
-def getImageResource(id):
+@capture_routes.route('/<int:id>/resource')
+def getCaptureResource(id):
     capture = Capture.query.get(id)
     if capture:
         publicId = capture.to_dict()["public_id"]
@@ -40,8 +40,8 @@ def getImageResource(id):
         return resource
 
 #delete image data from database and remove from cloud using public id
-@upload_routes.route('/<int:id>', methods=['DELETE'])
-def deleteImage(id):
+@capture_routes.route('/<int:id>', methods=['DELETE'])
+def deleteCapture(id):
     capture = Capture.query.get(id)
 
     if capture:
@@ -53,9 +53,9 @@ def deleteImage(id):
 
 
 #upload image to cloudinary and extract data to insert into database
-@upload_routes.route('/scan-image', methods=['POST'])
+@capture_routes.route('/upload', methods=['POST'])
 
-def upload_image():
+def upload_capture():
     if 'file' not in request.files:
         return jsonify({'error': 'No file found'})
 

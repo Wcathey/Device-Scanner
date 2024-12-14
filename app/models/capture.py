@@ -23,7 +23,7 @@ class Capture(db.Model):
     signature = db.Column(db.String, nullable=False)
     scans = relationship('Scan', back_populates='capture', cascade="all, delete-orphan, save-update")
     comments = relationship('Comment', back_populates='capture', cascade="all, delete-orphan, save-update")
-    mentions = relationship('Mention', back_populates='capture', cascade="all, delete-orphan, save-update")
+    tags = relationship('Tag', back_populates='capture', cascade="all, delete-orphan, save-update")
 
     @property
     def publicId(self):

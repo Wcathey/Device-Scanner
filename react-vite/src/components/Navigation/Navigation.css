@@ -33,7 +33,7 @@
   color: #E5E9EC;
   text-align: center;
   padding: 1rem;
-  
+
 
 
 }
@@ -52,9 +52,18 @@
   border: 3px solid black;
   border-radius: 20px;
   padding: 5px;
+  
 }
 
 .nav-search-bar label{
   font-size: 18px;
   font-weight: bold;
+}
+
+.nav-search-text {
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-size: 14px;
 }
