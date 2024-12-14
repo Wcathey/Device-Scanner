@@ -1,6 +1,6 @@
 from .db import db
 from .user import User
-from .image_data import Image
+from .capture import Capture
 from .device import Device
 from .comment import Comment
 from .mention import Mention

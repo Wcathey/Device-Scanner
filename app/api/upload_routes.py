@@ -1,7 +1,7 @@
 import cloudinary.api
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
-from app.models import db, Image
+from app.models import db, Capture
 
 import cloudinary
 
@@ -16,57 +16,57 @@ cloudinary.config(
     secure = True
 )
 
-transfer_routes = Blueprint('transfers', __name__)
+upload_routes = Blueprint('uploads', __name__)
 
 #get image data from database
-@transfer_routes.route('/')
+@upload_routes.route('/')
 def images():
-    images = Image.query.all()
-    return {'images': [image.to_dict() for image in images]}
+    captures = Capture.query.all()
+    return {'captures': [captures.to_dict() for capture in captures]}
 
 #get image data of specified id from database
-@transfer_routes.route('/<int:id>')
+@upload_routes.route('/<int:id>')
 def getImage(id):
-    image = Image.query.get(id)
-    return image.to_dict()
+    capture = Capture.query.get(id)
+    return capture.to_dict()
 
 #get image resource from cloud including data not used in local database
-@transfer_routes.route('/<int:id>/resource')
+@upload_routes.route('/<int:id>/resource')
 def getImageResource(id):
-    image = Image.query.get(id)
-    if image:
-        publicId = image.to_dict()["public_id"]
+    capture = Capture.query.get(id)
+    if capture:
+        publicId = capture.to_dict()["public_id"]
         resource = cloudinary.api.resource(publicId)
         return resource
 
 #delete image data from database and remove from cloud using public id
-@transfer_routes.route('/<int:id>', methods=['DELETE'])
+@upload_routes.route('/<int:id>', methods=['DELETE'])
 def deleteImage(id):
-    image = Image.query.get(id)
+    capture = Capture.query.get(id)
 
-    if image:
-        publicId = image.to_dict()["public_id"]
+    if capture:
+        publicId = capture.to_dict()["public_id"]
         destroy(publicId)
-        db.session.delete(image)
+        db.session.delete(capture)
         db.session.commit()
-        return jsonify({"message": "successfully deleted image"})
+        return jsonify({"message": "successfully deleted file"})
 
 
 #upload image to cloudinary and extract data to insert into database
-@transfer_routes.route('/upload', methods=['POST'])
+@upload_routes.route('/scan-image', methods=['POST'])
 
 def upload_image():
     if 'file' not in request.files:
         return jsonify({'error': 'No file found'})
 
-    image = request.files['file']
-    if image.filename == '':
+    capture = request.files['file']
+    if capture.filename == '':
         return jsonify({'error': 'No selected file'})
 
     try:
-        result = upload(image)
+        result = upload(capture)
 
-        data = Image(
+        data = Capture(
                 asset_folder = result["asset_folder"],
                 bytes = result["bytes"],
                 display_name = result["display_name"],

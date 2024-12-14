@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
-from app.models import Image
+from app.models import Capture
 
 def check_length(form, field):
     comment = field.data
