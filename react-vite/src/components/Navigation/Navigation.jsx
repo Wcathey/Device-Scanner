@@ -32,7 +32,7 @@ function Navigation() {
         </div>
         <div className="nav-search-text">
 
-        <p>Enter a Tag name to find all captures with the provided tag name</p>
+        <p>Enter a Tag Name to locate a folder</p>
         <p>If you have a capture ID you can enter it to find an exact capture</p>
         </div>
       </div>

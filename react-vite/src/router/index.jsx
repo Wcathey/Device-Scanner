@@ -1,10 +1,12 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import HomePage from '../components/HomePage';
-import DevicePage from '../components/DevicePage';
+import AllDevices from '../components/DevicePage/AllDevices';
 import SettingsPage from '../components/SettingsPage';
 import CapturesPage from '../components/CapturesPage';
+import CaptureDetailsPage from '../components/CaptureDetailsPage';
+import Camera from '../components/Camera';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -28,8 +30,23 @@ export const router = createBrowserRouter([
         element: <CapturesPage />,
       },
       {
+        path:"/captures/scan",
+        element: <Camera />,
+      },
+      {
+        path: "/captures/:captureId",
+        element: <Outlet/>,
+        children: [
+          {
+            index: true,
+            element: <CaptureDetailsPage/>
+          }
+        ]
+
+      },
+      {
         path: "/devices",
-        element: <DevicePage />,
+        element: <AllDevices />,
       },
       {
         path: "/settings",

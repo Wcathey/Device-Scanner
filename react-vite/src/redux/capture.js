@@ -37,9 +37,11 @@ const deleteCapture = () => ({
 
 export const getAllCaptures = () => async dispatch => {
     const response = await fetch("/api/captures")
-    const data = await response.json();
+    console.log(response)
     if(response.ok) {
-        dispatch(loadCaptures(data.Captures));
+        const data = await response.json();
+
+        dispatch(loadCaptures(data.captures));
     }  else if (response.status < 500) {
     const errorMessages = await response.json();
     return errorMessages

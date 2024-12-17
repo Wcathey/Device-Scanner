@@ -22,12 +22,14 @@ capture_routes = Blueprint('captures', __name__)
 @capture_routes.route('/')
 def capture():
     captures = Capture.query.all()
-    return {'captures': [captures.to_dict() for capture in captures]}
+
+    return {'captures': [capture.to_dict() for capture in captures]}
 
 #get image data of specified id from database
 @capture_routes.route('/<int:id>')
 def getCapture(id):
     capture = Capture.query.get(id)
+
     return capture.to_dict()
 
 #get image resource from cloud including data not used in local database
@@ -66,7 +68,7 @@ def upload_capture():
     try:
         result = upload(capture)
 
-        data = Capture(
+        uploadData = Capture(
                 asset_folder = result["asset_folder"],
                 bytes = result["bytes"],
                 display_name = result["display_name"],
@@ -79,9 +81,14 @@ def upload_capture():
                 secure_url = result["secure_url"],
                 signature = result["signature"]
         )
-        db.session.add(data)
+
+
+
+
+        db.session.add(uploadData)
         db.session.commit()
-        return data.to_dict()
+
+        return uploadData.to_dict()
 
     except Exception as e:
         return jsonify({'error': str(e)})

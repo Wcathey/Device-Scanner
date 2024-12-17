@@ -1,0 +1,38 @@
+.webcam-page-container {
+    background-color: #E5E9EC;
+}
+
+#webcam-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+
+}
+
+.web-capture-btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    background-color: rgb(24, 23, 23);;
+    border-top: 2px solid white;
+
+}
+
+.web-capture-btns button {
+    padding: 5px;
+    width: 25%;
+    border: 3px solid grey;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: 1rem;
+    background-color: black;
+    color: white;
+
+}
+
+.camera {
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+}

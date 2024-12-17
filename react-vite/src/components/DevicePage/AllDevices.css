@@ -1,0 +1,15 @@
+.dp-container h1 {
+    border-bottom: 2px solid white;
+}
+
+.device-list {
+    display: grid;
+    gap: 3rem;
+    margin: 1rem;
+    width: 50%;
+    border-right: 2px solid white;
+}
+
+.device-list p {
+    text-decoration: underline;
+}

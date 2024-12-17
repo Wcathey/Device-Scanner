@@ -1,3 +1,3 @@
-import DevicePage from "./DevicePage";
+import AllDevices from "./AllDevices";
 
-export default DevicePage;
+export default AllDevices;

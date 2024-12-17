@@ -2,10 +2,12 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+    color: #E5E9EC;
 }
 
 body {
-    background-color: #FDE74C;
+    background-color: black;
 }
 #main-header {
     text-align: center;
