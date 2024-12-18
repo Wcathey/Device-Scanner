@@ -1,5 +1,5 @@
 .webcam-page-container {
-    background-color: #E5E9EC;
+    background-color: black;
 }
 
 #webcam-wrapper {
@@ -35,4 +35,28 @@
 .camera {
     border-left: 5px solid black;
     border-right: 5px solid black;
+}
+
+#image-capture{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+
+}
+
+#image-capture button {
+    padding: 5px;
+    width: 25%;
+    border: 3px solid grey;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: 1rem;
+    background-color: black;
+    color: white;
+
 }

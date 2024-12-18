@@ -17,7 +17,7 @@ function CapturesPage() {
         if (allCaptures) {
 
             return (
-
+                
                 allCaptures.map((capture) => (
                     <li key={capture.id}>
                         <NavLink to={`/captures/${capture.id}`}>

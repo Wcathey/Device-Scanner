@@ -1,6 +1,8 @@
 import { useRef, useState, useCallback } from 'react';
+import { useDispatch, useSelector} from "react-redux";
 import Webcam from 'react-webcam';
 import './Camera.css'
+import { uploadCaptureMetaData} from '../../redux/capture';
 
 
 const videoConstraints = {
@@ -10,8 +12,16 @@ const videoConstraints = {
 };
 
 const Camera = () => {
-    const webcamRef = useRef(null);
+
+
     const [url, setUrl] = useState(null);
+    const [tagName, setTagName] = useState("");
+    const [errors, setErrors] = useState({});
+    const sessionUser = useSelector(state => state.session.user);
+
+
+    const dispatch = useDispatch();
+    const webcamRef = useRef(null);
 
     const captureImage = useCallback(async () => {
         const imageSrc = webcamRef.current.getScreenshot();
@@ -22,6 +32,15 @@ const Camera = () => {
         console.log(e)
     }
 
+const handleUpload = (e) => {
+    e.preventDefault();
+    setErrors({});
+
+    dispatch(uploadCaptureMetaData(url, tagName, sessionUser.id)).then((uploadData) => {
+        return uploadData
+    })
+
+ }
 
 
 
@@ -36,6 +55,8 @@ const Camera = () => {
                     videoConstraints={videoConstraints}
                     onUserMedia={onUserMedia}
                     mirrored={true}
+                    imageSmoothing={true}
+                    screenshotQuality={1}
                 />
             </div>
             <div className='web-capture-btns'>
@@ -44,8 +65,28 @@ const Camera = () => {
             </div>
             <div className='display-captured-image'>
                 {url && (
-                    <div>
+                    <div id="image-capture">
+                        <form onSubmit={handleUpload}>
                         <img src={url} alt="Screenshot" />
+
+                        <div className='tag-details-container'>
+                            <p>Add a tag to upload image</p>
+                            <label>
+                                Tag
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="#Tag"
+                                value={tagName}
+                                onChange={(e) => setTagName(e.target.value)}
+                                required
+                            />
+                        {errors.tagName && <p>{errors.tagName}</p>}
+                        </div>
+                        <button type="submit">Save Capture</button>
+                        </form>
+
+
                     </div>
                 )}
             </div>

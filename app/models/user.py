@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=func.now(), onupdate=func.now())
     devices = relationship('Device', back_populates='user', cascade="all, delete-orphan, save-update" )
     tags = relationship('Tag', back_populates='user', cascade="all, delete-orphan, save-update")
+    captures = relationship('Capture', back_populates='user', cascade="all, delete-orphan, save-update")
 
     @property
     def password(self):

@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA
 from sqlalchemy.orm import relationship
-
+from sqlalchemy import ForeignKey
 
 
 class Capture(db.Model):
@@ -10,13 +10,13 @@ class Capture(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    owner_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
     asset_folder = db.Column(db.String)
     bytes = db.Column(db.Integer, nullable=False)
     display_name = db.Column(db.String, nullable=False)
     format = db.Column(db.String, nullable=False)
     width = db.Column(db.Integer, nullable=False)
     height = db.Column(db.Integer, nullable=False)
-    original_filename = db.Column(db.String, nullable=False)
     public_id = db.Column(db.String, nullable=False, unique=True)
     resource_type = db.Column(db.String, nullable=False)
     secure_url = db.Column(db.String, nullable=False)
@@ -24,6 +24,7 @@ class Capture(db.Model):
     scans = relationship('Scan', back_populates='capture', cascade="all, delete-orphan, save-update")
     comments = relationship('Comment', back_populates='capture', cascade="all, delete-orphan, save-update")
     tags = relationship('Tag', back_populates='capture', cascade="all, delete-orphan, save-update")
+    user = relationship('User', back_populates="captures")
 
     @property
     def publicId(self):
@@ -46,7 +47,6 @@ class Capture(db.Model):
             'format': self.format,
             'width': self.width,
             'height': self.height,
-            'original_filename': self.original_filename,
             'public_id': self.public_id,
             'resource_type': self.resource_type,
             'secure_url': self.secure_url,

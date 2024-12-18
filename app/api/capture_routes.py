@@ -1,11 +1,13 @@
 import cloudinary.api
+import cloudinary.uploader
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
-from app.models import db, Capture
+from app.models import db, Capture, Tag
+from app.forms import CaptureTagForm
 
 import cloudinary
 
-from cloudinary.uploader import upload, destroy
+
 
 from ..config import Config
 
@@ -48,44 +50,57 @@ def deleteCapture(id):
 
     if capture:
         publicId = capture.to_dict()["public_id"]
-        destroy(publicId)
+        cloudinary.uploader.destroy(publicId)
         db.session.delete(capture)
         db.session.commit()
         return jsonify({"message": "successfully deleted file"})
 
 
 #upload image to cloudinary and extract data to insert into database
-@capture_routes.route('/upload', methods=['POST'])
+@capture_routes.route('/scan', methods=['POST'])
 
 def upload_capture():
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file found'})
 
-    capture = request.files['file']
-    if capture.filename == '':
-        return jsonify({'error': 'No selected file'})
+
+
+    data = request.json
+    encodedImageUrl = data["encodedUrl"]
+    tag = data["tag"]
+    ownerId = data["owner_id"]
+
+
+
+
+
 
     try:
-        result = upload(capture)
+        result = cloudinary.uploader.upload(encodedImageUrl, tags=tag)
 
         uploadData = Capture(
+                owner_id = ownerId,
                 asset_folder = result["asset_folder"],
                 bytes = result["bytes"],
                 display_name = result["display_name"],
                 format = result["format"],
                 width = result["width"],
                 height = result["height"],
-                original_filename = result["original_filename"],
                 public_id = result["public_id"],
                 resource_type = result["resource_type"],
                 secure_url = result["secure_url"],
                 signature = result["signature"]
         )
 
-
-
-
         db.session.add(uploadData)
+        db.session.commit()
+        capture = Capture.query.filter(Capture.public_id == result["public_id"]).first()
+
+        uploadTag = Tag(
+            name = tag,
+            capture_id = capture.id,
+            user_id = capture.owner_id
+        )
+
+        db.session.add(uploadTag)
         db.session.commit()
 
         return uploadData.to_dict()

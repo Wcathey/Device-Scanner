@@ -3,7 +3,6 @@ const UPLOAD_CAPTURE = "capture/uploadCapture";
 const LOAD_CAPTURES = "capture/loadCaptures"
 const CAPTURE_DETAILS = "capture/captureDetails";
 const DELETE_CAPTURE = "capture/deleteCapture";
-const ADD_CAPTURE_TAG = "capture/addCaptureTag";
 const ADD_COMMENT = "capture/addComment";
 
 const uploadCapture = (capture) => ({
@@ -21,10 +20,6 @@ const captureDetails = (captureId) => ({
     captureId
 });
 
-const addCaptureTag = (captureId) => ({
-    type: ADD_CAPTURE_TAG,
-    captureId
-});
 
 const addComment = (comment) => ({
     type: ADD_COMMENT,
@@ -37,7 +32,6 @@ const deleteCapture = () => ({
 
 export const getAllCaptures = () => async dispatch => {
     const response = await fetch("/api/captures")
-    console.log(response)
     if(response.ok) {
         const data = await response.json();
 
@@ -50,16 +44,17 @@ export const getAllCaptures = () => async dispatch => {
 }
 };
 
-export const uploadCaptureMetaData = (captureData) => async dispatch => {
-    const response = await fetch("/api/captures/upload", {
+export const uploadCaptureMetaData = (encodedUrl, tag, ownerId) => async dispatch => {
+    const response = await fetch("/api/captures/scan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(captureData)
+        body: JSON.stringify({encodedUrl, tag, ownerId})
     });
 
     if(response.ok) {
         const data = await response.json();
         dispatch(uploadCapture(data));
+
     } else if (response.status < 500) {
         const errorMessages = await response.json();
         return errorMessages
@@ -83,24 +78,6 @@ export const getCaptureDetailsById = (captureId) => async dispatch => {
     }
 };
 
-export const addTagToCapture = (captureId, tagName) => async dispatch => {
-    const response = await fetch(`/api/captures/${captureId}/tag`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tagName)
-    });
-
-    if(response.ok) {
-        const data = await response.json();
-        dispatch(addCaptureTag(data));
-        return data;
-    } else if (response.status < 500) {
-        const errorMessages = await response.json();
-        return errorMessages;
-    } else {
-        return { server: "Something went wrong. Please try again"}
-    }
-};
 
 export const addCommentToCapture = (captureId, comment) => async dispatch => {
     const response = await fetch(`/api/captures/${captureId}/comments`, {
@@ -144,7 +121,7 @@ const initialState = {};
 const captureReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPLOAD_CAPTURE: {
-            const newState = { ...state, ...action.captureData};
+            const newState = { ...state, ...action.capture};
             return newState;
         }
         case LOAD_CAPTURES: {
