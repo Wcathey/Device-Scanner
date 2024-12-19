@@ -2,22 +2,55 @@
 .profile-dropdown {
   position: absolute;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   top: 0;
   right: 0;
-  background-color: rgb(0, 0, 0);
-  width: 50%;
+  width: 100%;
   height: 5%;
-  border-bottom-left-radius: 25px;
-  border-left: 2px solid white;
   border-bottom: 2px solid white;
   padding: 5px;
+  color: #66FCF1;
+  background-color: #0B0C10;
+  box-shadow: 0px 0px 30px 0px;
+
+}
+.profile-dropdown li{
+  font-size: 30px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: color .3s ease-in-out;
+
+}
+
+.profile-dropdown li:hover {
+  color: rgb(31, 190, 111);
+  color: #66FCF1;
+  transition: color .3s ease-in-out;
+
+}
+
+.profile-dropdown button {
+  border: 2px solid rgb(31, 190, 111);
+  color: #66FCF1;
+  background-color: rgb(10, 22, 17);
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: light;
+  cursor: pointer;
+  transition: color .3s ease-in-out;
+}
+
+.profile-dropdown button:hover {
+  background-color: rgb(4, 36, 23);
+  box-shadow: 0px 0xp 60px 30px rgb(31, 190, 111);
+  transition: color .3s ease-in-out;
 }
 
 .nav-container {
-  background-color: rgb(24, 23, 23);
-  color: #E5E9EC;
-  border-bottom: 2px solid white;
+
+  color: #C5C6C7;
+
 
 }
 
@@ -32,7 +65,7 @@
 .nav-list a {
   font-weight: bold;
   font-size: 20px;
-  color: #E5E9EC;
+  color: #f2f2f3
 }
 
 #nav-title {
@@ -41,9 +74,10 @@
 }
 
 #nav-title h1{
-  color: #E5E9EC;
+  color: #66FCF1;
   text-align: center;
   padding: 1rem;
+  font-size: 50px;
 
 
 
@@ -61,18 +95,15 @@
 
 .nav-search-bar input {
   width: 50%;
-  border: 3px solid black;
+  border: 3px solid #f2f2f3;
   border-radius: 20px;
-  padding: 5px;
-  color: black;
+  padding: 10px;
+  color: #f2f2f3;
   font-weight: bold;
+  background-color: #1F2833;
 
 }
 
-.nav-search-bar label{
-  font-size: 18px;
-  font-weight: bold;
-}
 
 .nav-search-text {
   text-align: center;
@@ -84,7 +115,12 @@
 }
 
 #profile-icon {
-  color: white;
-  background-color: rgb(24, 23, 23);
-  font-size: 20px;
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  background-color: #0B0C10;
+  color: #66FCF1;
+  font-size: 2rem;
+
+
 }

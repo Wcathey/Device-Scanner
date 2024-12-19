@@ -1,11 +1,15 @@
 .webcam-page-container {
-    background-color: black;
+    background-color: rgb(6, 35, 34);
+    box-shadow: 0px 0px 500px 100px #267a75;
+
 }
 
 #webcam-wrapper {
     display: flex;
     justify-content: center;
-    background-color: grey;
+    background-color: #0B0C10;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
 
 }
 
@@ -14,49 +18,81 @@
     justify-content: center;
     gap: 1rem;
     padding-top: 1rem;
-    background-color: rgb(24, 23, 23);;
-    border-top: 2px solid white;
+    padding-bottom: 1rem;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    background-color: #0B0C10;
+    box-shadow: 0px 0px 500px 100px #267a75;
 
 }
 
 .web-capture-btns button {
     padding: 5px;
     width: 25%;
-    border: 3px solid grey;
-    font-weight: bold;
+    border: 1px solid rgb(31, 190, 111);
+    font-weight: lighter;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 3rem;
     margin-top: 1rem;
-    background-color: black;
-    color: white;
+    background-color: rgb(6, 35, 34);
+    color: #66FCF1;
 
 }
 
 .camera {
-    border-left: 5px solid black;
-    border-right: 5px solid black;
+    border-left: 2px solid #66FCF1;
+    border-right: 2px solid #66FCF1;
 }
 
 #image-capture{
-    background-color: black;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: fit-content;
     margin: 0 auto;
+    text-align: center;
+    box-shadow: 0px 0px 500px 100px #267a75;
+    border-left: 2px solid #66FCF1;
+    border-right: 2px solid #66FCF1;
 
 }
 
 #image-capture button {
     padding: 5px;
-    width: 25%;
-    border: 3px solid grey;
-    font-weight: bold;
+    border: 1px solid rgb(31, 190, 111);
+    font-weight: lighter;
     border-radius: 10px;
-    font-size: 20px;
-    margin-top: 1rem;
+    font-size: 3rem;
     background-color: black;
-    color: white;
+    color: #66FCF1;
+    margin: 2rem;
+
+}
+
+.tag-details-container {
+    display: grid;
+    color: rgb(31, 190, 111);
+    gap: 1rem;
+    text-align: center;
+}
+
+.tag-details-container label {
+    display: none;
+}
+
+.tag-details-container p {
+    margin-top: 1rem;
+    font-size: 20px;
+    font-weight: light;
+
+}
+
+.tag-details-container input {
+    padding: 5px;
+    width: 80%;
+    margin: 0 auto;
+    font-weight: bold;
 
 }

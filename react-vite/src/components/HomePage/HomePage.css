@@ -4,15 +4,7 @@
 }
 
 .hp-side-bar {
-
-    background-color: rgb(24, 23, 23);
-    border-top: 1px solid white;
-    border-right: 4px solid white;
-    width: fit-content;
-    height: 900px;
-    padding: 1rem;
-    text-align: right;
-
+  text-align: center;
 
 
 
@@ -20,21 +12,38 @@
 
 
 .icon {
-    color: white;
+    color: #45A29E;
     font-size: 30px;
+
 
 }
 
 .hp-sb-list {
-    display: grid;
-    gap: 3rem;
-    justify-items: center;
+   display: grid;
+   gap: 10rem;
+   margin-top: 5rem;
+
+
+
+
+
 }
 
 .hp-sb-list a{
-    color: #E5E9EC;
-    font-weight: bold;
-    font-size: 20px;
+    color: #66FCF1;
+    text-align: center;
+    font-size: 50px;
+    box-shadow: 10px 10px 500px 70px;
+    background-color: black;
+    border-radius: 100px;
+    width: 100%;
+    padding: 20px;
+    transition: color 1s ease-in-out;
 
 
+}
+
+.hp-sb-list a:hover {
+    color: rgb(31, 190, 111);
+    transition: color 1s ease-in-out;
 }

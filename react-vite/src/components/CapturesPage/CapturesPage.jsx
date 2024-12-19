@@ -17,7 +17,7 @@ function CapturesPage() {
         if (allCaptures) {
 
             return (
-                
+
                 allCaptures.map((capture) => (
                     <li key={capture.id}>
                         <NavLink to={`/captures/${capture.id}`}>
@@ -32,15 +32,12 @@ function CapturesPage() {
 
 
     return (
-        //change to scan image after implementation
+
         <div className="captures-page-container">
-            <div className="cp-header-wrapper">
                 <h1>Captures</h1>
                 <NavLink to={'/captures/scan'}>
-
                     <p>Upload Image</p>
                 </NavLink>
-            </div>
             <CaptureFolderList/>
         </div>
 

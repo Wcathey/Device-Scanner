@@ -3,7 +3,7 @@ import cloudinary.uploader
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
 from app.models import db, Capture, Tag
-from app.forms import CaptureTagForm
+
 
 import cloudinary
 
@@ -61,16 +61,10 @@ def deleteCapture(id):
 
 def upload_capture():
 
-
-
     data = request.json
     encodedImageUrl = data["encodedUrl"]
     tag = data["tag"]
-    ownerId = data["owner_id"]
-
-
-
-
+    ownerId = data["ownerId"]
 
 
     try:

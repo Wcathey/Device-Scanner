@@ -24,7 +24,7 @@ function Navigation() {
       <div className="nav-search-container">
       <div className="nav-search-bar">
 
-        <label>Search:</label>
+        
         <input
           placeholder="Search for an image..."
         >

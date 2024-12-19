@@ -34,12 +34,13 @@ const Camera = () => {
 
 const handleUpload = (e) => {
     e.preventDefault();
+    if((sessionUser)) {
     setErrors({});
 
     dispatch(uploadCaptureMetaData(url, tagName, sessionUser.id)).then((uploadData) => {
         return uploadData
     })
-
+    }
  }
 
 
