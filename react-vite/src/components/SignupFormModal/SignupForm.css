@@ -7,7 +7,7 @@
     border-left: 1px solid white;
     border-right: 1px solid white;
     border-bottom: 2px solid white;
-    box-shadow: 0px 0px 500px 0px #00ffee;
+
 
 }
 
@@ -50,4 +50,8 @@
     color: #66FCF1;
     font-weight: light;
     box-shadow: 0px 0px 500px 0px;
+}
+
+.signup-container p {
+    color: white;
 }

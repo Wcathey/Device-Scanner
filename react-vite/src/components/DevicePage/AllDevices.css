@@ -1,5 +1,11 @@
+.dp-container {
+    text-align: center;
+}
+
 .dp-container h1 {
     border-bottom: 2px solid white;
+    color: #66FCF1;
+    font-size: 50px;
 }
 
 .device-list {

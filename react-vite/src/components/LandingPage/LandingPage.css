@@ -1,0 +1,50 @@
+.title-area {
+display: grid;
+justify-content: center;
+border-bottom: 1px solid white;
+padding-bottom: 3rem;
+
+}
+
+.landing-page-container h1 {
+    color: white;
+    margin-top: 25vh;
+    font-size: 6rem;
+    font-weight: lighter;
+}
+
+.landing-page-container p {
+    color: white;
+    font-size: 20px;
+}
+
+.landing-page-container span {
+    color: #66FCF1;
+}
+
+.lp-btn-wrapper {
+display: grid;
+width: 30%;
+margin: 0 auto;
+padding-top: 5rem;
+gap: 2rem;
+
+}
+
+.lp-cred-btn {
+    color: white;
+    background-color: black;
+    border: 2px solid #66FCF1;
+    border-radius: 10px;
+    font-size: 3rem;
+    padding: 5px;
+    font-weight: lighter;
+    box-shadow: 0px 0px 300px 10px #66FCF1;
+    cursor: pointer;
+    text-align: center;
+}
+
+#signup-btn {
+    background-color:rgb(6, 35, 34);
+}
+

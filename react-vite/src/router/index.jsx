@@ -9,6 +9,7 @@ import CaptureDetailsPage from '../components/CaptureDetailsPage';
 import Camera from '../components/Camera';
 import Layout from './Layout';
 
+
 export const router = createBrowserRouter([
   {
     element: <Layout />,

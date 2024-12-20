@@ -19,12 +19,12 @@ function Navigation() {
       </div>
 
       <div id="nav-title">
-        <h1>Scanner Archive</h1>
+        <h1>Celeri-scan</h1>
       </div>
       <div className="nav-search-container">
       <div className="nav-search-bar">
 
-        
+
         <input
           placeholder="Search for an image..."
         >

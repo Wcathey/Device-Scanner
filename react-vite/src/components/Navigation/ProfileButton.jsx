@@ -42,30 +42,17 @@ function ProfileButton() {
   return (
     <>
       <button onClick={toggleMenu}>
-      <ImMenu id="profile-icon"/>
+        <ImMenu id="profile-icon" />
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
+          {user && (
             <>
               <li>{user.username}</li>
               <li>{user.email}</li>
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>
-            </>
-          ) : (
-            <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
             </>
           )}
         </ul>
