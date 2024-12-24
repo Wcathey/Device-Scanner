@@ -8,6 +8,7 @@ import CapturesPage from '../components/CapturesPage';
 import CaptureDetailsPage from '../components/CaptureDetailsPage';
 import Camera from '../components/Camera';
 import Layout from './Layout';
+import TagFoldersPage from '../components/TagFoldersPage';
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,20 @@ export const router = createBrowserRouter([
           }
         ]
 
+      },
+      {
+        path: "/tags",
+        element: <TagFoldersPage />,
+      },
+      {
+        path: "/tags/:tagId",
+        element: <Outlet/>,
+        children: [
+          {
+            index: true,
+            element: <></>
+          }
+        ]
       },
       {
         path: "/devices",

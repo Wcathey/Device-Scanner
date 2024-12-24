@@ -1,0 +1,46 @@
+
+.tfp-container h1{
+    color: #66FCF1;
+    text-align: center;
+
+
+}
+
+.tag-folder-wrapper {
+
+    padding: 1.5rem 3rem;
+    color: white;
+    font-size: 18px;
+    text-transform: capitalize;
+
+
+
+}
+
+.tag-folder-component {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    border: 1px solid red;
+    text-align: center;
+    margin: 1rem;
+    padding: 2rem 0
+
+}
+
+#folder-icon {
+    font-size: 100px;
+
+
+
+}
+
+.tfp-container p {
+    color:#66FCF1;
+    font-weight: light;
+    font-size: 30px;
+    padding-top: 3rem;
+    margin: 0 auto;
+    border-bottom: 2px solid #0fe9da;
+    width: fit-content;
+}

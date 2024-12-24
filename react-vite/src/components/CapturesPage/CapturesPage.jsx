@@ -34,7 +34,7 @@ function CapturesPage() {
     return (
 
         <div className="captures-page-container">
-                <h1>Captures</h1>
+                <h1>Captures Directory</h1>
                 <NavLink to={'/captures/scan'}>
                     <p>Upload Image</p>
                 </NavLink>
