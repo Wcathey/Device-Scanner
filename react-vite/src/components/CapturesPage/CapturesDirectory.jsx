@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { getAllCaptures } from "../../redux/capture";
 import { NavLink } from "react-router-dom";
-import "./CapturesPage.css";
+import "./CapturesDirectory.css";
 
-function CapturesPage() {
+function CapturesDirectory() {
     const dispatch = useDispatch();
     const allCaptures = useSelector(state => state.capture.Captures);
 
@@ -44,4 +44,4 @@ function CapturesPage() {
     )
 }
 
-export default CapturesPage;
+export default CapturesDirectory;

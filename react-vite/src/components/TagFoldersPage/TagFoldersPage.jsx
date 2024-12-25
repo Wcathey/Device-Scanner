@@ -19,7 +19,7 @@ function TagFoldersPage () {
             return (
                 allTags.map((tag) =>(
                     <li key={tag.id}>
-                        <NavLink to={`/tags/${tag.id}`}>
+                        <NavLink to={`/tags/${tag.name}`}>
                         <div className="tag-folder-wrapper">
                         <FaRegFolder id="folder-icon"/>
                             <p>#{tag.name}</p>

@@ -1,5 +1,5 @@
 const LOAD_TAGS = "tags/loadTags";
-const TAG_DETAILS = "tags/tagTags";
+const TAG_CONTENTS = "tags/tagContents";
 const REMOVE_TAG = "tags/removeTag";
 const UPDATE_TAG = "tags/updateTag";
 
@@ -8,9 +8,9 @@ const loadTags = (tags) => ({
     tags
 });
 
-const tagDetails = (tagId) => ({
-    type: TAG_DETAILS,
-    tagId
+const tagContents = (name) => ({
+    type: TAG_CONTENTS,
+    name
 });
 
 const removeTag = () => ({
@@ -37,12 +37,13 @@ export const getAllTags = () => async dispatch => {
     }
 };
 
-export const getTagByid = (tagId) => async dispatch => {
-    const response = await fetch(`/api/tags/${tagId}`)
+export const getTagContentsByName = (name) => async dispatch => {
+
+    const response = await fetch(`/api/tags/${name}`)
 
     if(response.ok) {
         const data = await response.json();
-        dispatch(tagDetails(data));
+        dispatch(tagContents(data));
         return response;
     } else if (response.status < 500) {
         const errorMessages = await response.json();
@@ -60,8 +61,8 @@ const tagReducer = (state = initialState, action) => {
             const newState = {...state, Tags: action.tags};
             return newState;
         }
-        case TAG_DETAILS: {
-            const newState = {...state, ...action.tagId};
+        case TAG_CONTENTS: {
+            const newState = {...state, ...action.name};
             return newState;
         }
 

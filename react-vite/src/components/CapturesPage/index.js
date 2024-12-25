@@ -1,3 +1,3 @@
-import CapturesPage from "./CapturesPage";
+import CapturesDirectory from "./CapturesDirectory";
 
-export default CapturesPage;
+export default CapturesDirectory;

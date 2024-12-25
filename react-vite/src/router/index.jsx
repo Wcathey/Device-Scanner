@@ -4,11 +4,12 @@ import SignupFormPage from '../components/SignupFormPage';
 import HomePage from '../components/HomePage';
 import AllDevices from '../components/DevicePage/AllDevices';
 import SettingsPage from '../components/SettingsPage';
-import CapturesPage from '../components/CapturesPage';
+import CapturesDirectory from '../components/CapturesPage';
 import CaptureDetailsPage from '../components/CaptureDetailsPage';
 import Camera from '../components/Camera';
 import Layout from './Layout';
 import TagFoldersPage from '../components/TagFoldersPage';
+import TagFolderContents from '../components/TagFolderContents';
 
 
 export const router = createBrowserRouter([
@@ -29,11 +30,14 @@ export const router = createBrowserRouter([
       },
       {
         path:"/captures",
-        element: <CapturesPage />,
+        element: <CapturesDirectory />,
       },
       {
         path:"/captures/scan",
         element: <Camera />,
+      },
+      {
+        path: "/captures/tags/"
       },
       {
         path: "/captures/:captureId",
@@ -51,12 +55,12 @@ export const router = createBrowserRouter([
         element: <TagFoldersPage />,
       },
       {
-        path: "/tags/:tagId",
+        path: "/tags/:name",
         element: <Outlet/>,
         children: [
           {
             index: true,
-            element: <></>
+            element: <TagFolderContents/>
           }
         ]
       },

@@ -5,14 +5,15 @@ from flask_login import login_required
 tag_routes = Blueprint('tags', __name__)
 
 @tag_routes.route('/')
-def getTags():
+def get_tags():
     tags = Tag.query.all()
 
     return {'tags': [tag.to_dict() for tag in tags]}
 
 
-@tag_routes.route('/<int:id>')
-def getTag(id):
-    tag = Tag.query.get(id)
+@tag_routes.route('/<name>')
+def get_tag(name):
 
-    return tag.to_dict()
+    filteredTags = Capture.query.filter(Tag.name == name).join(Capture.tags)
+
+    return {'tags': [tag.to_dict() for tag in filteredTags]}
