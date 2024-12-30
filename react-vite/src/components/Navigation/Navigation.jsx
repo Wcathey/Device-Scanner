@@ -1,8 +1,32 @@
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getTagContentsByName } from "../../redux/tag";
 
 function Navigation() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const tags = useSelector(state => state.tag.tags)
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrors({})
+
+    if (tags) {
+
+      navigate(`/tags/${searchQuery}`)
+    } else {
+      setErrors({query: "No images found with that tag name"})
+    }
+
+
+  }
   return (
     <div className="nav-container">
 
@@ -22,21 +46,24 @@ function Navigation() {
         <h1>Celeri-scan</h1>
       </div>
       <div className="nav-search-container">
-      <div className="nav-search-bar">
+        <div className="nav-search-bar">
+        <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by tag name..."
+            >
+            </input>
+            {errors.query && <p id="test">{errors.query}</p>}
 
-
-        <input
-          placeholder="Search for an image..."
-        >
-        </input>
+            <button type="submit">Search</button>
+            </form>
         </div>
-        <div className="nav-search-text">
 
-        <p>Enter a Tag Name to locate a folder</p>
-        <p>If you have a capture ID you can enter it to find an exact capture</p>
-        </div>
+
       </div>
-      </div>
+    </div>
 
 
   );

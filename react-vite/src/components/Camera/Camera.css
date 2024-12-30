@@ -2,33 +2,40 @@
     background-color: rgb(6, 35, 34);
     box-shadow: 0px 0px 500px 100px #267a75;
 
+
 }
 
-#webcam-wrapper {
-    display: flex;
-    justify-content: center;
+#cam-visible {
+    display: grid;
+    width: 100%;
+    justify-items: center;
+    text-align: center;
     background-color: #0B0C10;
     border-top: 5px solid black;
     border-bottom: 5px solid black;
 
 }
 
+#cam-hidden {
+    display: none;
+}
+
 .web-capture-btns {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 10px;
     border-top: 3px solid black;
     border-bottom: 3px solid black;
     background-color: #0B0C10;
     box-shadow: 0px 0px 500px 100px #267a75;
+    width: 100%;
 
 }
 
 .web-capture-btns button {
     padding: 5px;
-    width: 25%;
+    width: 50%;
     border: 1px solid rgb(31, 190, 111);
     font-weight: lighter;
     border-radius: 10px;
@@ -46,28 +53,44 @@
 
 #image-capture{
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
+    display: grid;
+    width: 100%;
     margin: 0 auto;
+
     text-align: center;
-    box-shadow: 0px 0px 500px 100px #267a75;
-    border-left: 2px solid #66FCF1;
-    border-right: 2px solid #66FCF1;
+    background-color: #0B0C10;
+    border-top: 5px solid black;
+
+
+}
+
+#image-capture img {
+    width: fit-content;
 
 }
 
 #image-capture button {
-    padding: 5px;
+
+    width: 80%;
     border: 1px solid rgb(31, 190, 111);
     font-weight: lighter;
     border-radius: 10px;
     font-size: 3rem;
     background-color: rgb(6, 35, 34);
     color: #66FCF1;
-    margin: 2rem;
+    margin: 0 auto;
+
+
+}
+
+.image-capture-btns {
+    display: grid;
+    gap: 1rem;
+    border-bottom: 3px solid black;
+    background-color: hidden;
+    width: 100%;
+    margin-top: 1rem;
+
 
 }
 
@@ -76,6 +99,10 @@
     color: rgb(31, 190, 111);
     gap: 1rem;
     text-align: center;
+    width: 100%;
+    box-shadow: 0px 0px 500px 100px #267a75;
+    padding-bottom: 1rem;
+    
 }
 
 .tag-details-container label {
@@ -83,7 +110,8 @@
 }
 
 .tag-details-container p {
-    margin-top: 1rem;
+    padding-top: 1rem;
+    margin: 0 auto;
     font-size: 20px;
     font-weight: light;
 
@@ -91,8 +119,9 @@
 
 .tag-details-container input {
     padding: 5px;
-    width: 80%;
+    width: 20%;
     margin: 0 auto;
     font-weight: bold;
+    border-radius: 20px;
 
 }

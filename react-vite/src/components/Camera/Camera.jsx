@@ -1,8 +1,8 @@
 import { useRef, useState, useCallback } from 'react';
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Webcam from 'react-webcam';
 import './Camera.css'
-import { uploadCaptureMetaData} from '../../redux/capture';
+import { uploadCaptureMetaData } from '../../redux/capture';
 
 
 const videoConstraints = {
@@ -17,6 +17,7 @@ const Camera = () => {
     const [url, setUrl] = useState(null);
     const [tagName, setTagName] = useState("");
     const [errors, setErrors] = useState({});
+    const [cameraVisibility, setCameraVisibility] = useState("cam-visible");
     const sessionUser = useSelector(state => state.session.user);
 
 
@@ -26,28 +27,29 @@ const Camera = () => {
     const captureImage = useCallback(async () => {
         const imageSrc = webcamRef.current.getScreenshot();
         setUrl(imageSrc);
+        setCameraVisibility("cam-hidden")
     }, [webcamRef]);
 
     const onUserMedia = (e) => {
         console.log(e)
     }
 
-const handleUpload = (e) => {
-    e.preventDefault();
-    if((sessionUser)) {
-    setErrors({});
+    const handleUpload = (e) => {
+        e.preventDefault();
+        if ((sessionUser)) {
+            setErrors({});
 
-    dispatch(uploadCaptureMetaData(url, tagName, sessionUser.id)).then((uploadData) => {
-        return uploadData
-    })
+            dispatch(uploadCaptureMetaData(url, tagName, sessionUser.id)).then((uploadData) => {
+                return uploadData
+            })
+        }
     }
- }
 
 
 
     return (
         <div className='webcam-page-container'>
-            <div id='webcam-wrapper'>
+            <div id={cameraVisibility}>
                 <Webcam
                     className='camera'
                     ref={webcamRef}
@@ -59,32 +61,39 @@ const handleUpload = (e) => {
                     imageSmoothing={true}
                     screenshotQuality={1}
                 />
+                <div className='web-capture-btns'>
+                    <button onClick={captureImage}>Capture</button>
+                </div>
             </div>
-            <div className='web-capture-btns'>
-                <button onClick={captureImage}>Capture</button>
-                <button onClick={() => setUrl(null)}>Refresh</button>
-            </div>
+
             <div className='display-captured-image'>
                 {url && (
                     <div id="image-capture">
                         <form onSubmit={handleUpload}>
-                        <img src={url} alt="Screenshot" />
+                            <img src={url} alt="Screenshot" />
 
-                        <div className='tag-details-container'>
-                            <p>Add a tag to upload image</p>
-                            <label>
-                                Tag
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="#Tag"
-                                value={tagName}
-                                onChange={(e) => setTagName(e.target.value)}
-                                required
-                            />
-                        {errors.tagName && <p>{errors.tagName}</p>}
-                        </div>
-                        <button type="submit">Save Capture</button>
+                            <div className='tag-details-container'>
+                                <p>Add a tag to upload image</p>
+                                <label>
+                                    Tag
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="#Tag"
+                                    value={tagName}
+                                    onChange={(e) => setTagName(e.target.value)}
+                                    required
+                                />
+                                {errors.tagName && <p>{errors.tagName}</p>}
+                            </div>
+                            <div className='image-capture-btns'>
+                                <button type="submit">Save Capture</button>
+                                <button onClick={() => {
+                                    setUrl(null)
+                                    setCameraVisibility("cam-visible")
+                                }
+                                }>Refresh</button>
+                            </div>
                         </form>
 
 

@@ -27,7 +27,6 @@ export const getAllTags = () => async dispatch => {
     const response = await fetch("/api/tags")
     if(response.ok) {
         const data = await response.json();
-        console.log(data)
         dispatch(loadTags(data.tags));
     } else if(response.status < 500) {
         const errorMessages = await response.json();
@@ -44,7 +43,7 @@ export const getTagContentsByName = (name) => async dispatch => {
     if(response.ok) {
         const data = await response.json();
         dispatch(tagContents(data));
-        return response;
+        return data;
     } else if (response.status < 500) {
         const errorMessages = await response.json();
         return errorMessages
