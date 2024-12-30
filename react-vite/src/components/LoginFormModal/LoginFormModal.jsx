@@ -11,6 +11,11 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+const loginDemoUser = () => {
+  setEmail("demo23@gmail.com")
+  setPassword("password")
+}
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -52,7 +57,10 @@ function LoginFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
+        <div className="login-btn-wrapper">
         <button type="submit">Log In</button>
+        <button type="submit" onClick={loginDemoUser}>Demo User</button>
+        </div>
       </form>
       </div>
   );
