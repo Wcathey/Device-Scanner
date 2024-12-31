@@ -1,7 +1,7 @@
 const LOAD_TAGS = "tags/loadTags";
 const TAG_CONTENTS = "tags/tagContents";
-const REMOVE_TAG = "tags/removeTag";
 const UPDATE_TAG = "tags/updateTag";
+const LOAD_QUERY = "tags/loadQuery";
 
 const loadTags = (tags) => ({
     type: LOAD_TAGS,
@@ -13,14 +13,14 @@ const tagContents = (name) => ({
     name
 });
 
-const removeTag = () => ({
-    type: REMOVE_TAG
-
-});
-
 const updateTag = (tagId) => ({
     type: UPDATE_TAG,
     tagId
+});
+
+const loadQuery = (query) => ({
+    type: LOAD_QUERY,
+    query
 });
 
 export const getAllTags = () => async dispatch => {
@@ -28,6 +28,7 @@ export const getAllTags = () => async dispatch => {
     if(response.ok) {
         const data = await response.json();
         dispatch(loadTags(data.tags));
+
     } else if(response.status < 500) {
         const errorMessages = await response.json();
         return errorMessages
@@ -52,6 +53,24 @@ export const getTagContentsByName = (name) => async dispatch => {
     }
 };
 
+export const loadSearchResults = (query) => async dispatch => {
+    const response = await fetch(`/api/tags/${query}`)
+
+    if(response.ok) {
+        const data = await response.json();
+        dispatch(loadQuery(data));
+        return data;
+    } else if(response.status < 500) {
+        const errorMessages = await response.json();
+        return errorMessages;
+    } else {
+        return { server: "Something went wrong. Please try again"}
+    }
+
+};
+
+
+
 const initialState = {};
 
 const tagReducer = (state = initialState, action) => {
@@ -61,6 +80,10 @@ const tagReducer = (state = initialState, action) => {
             return newState;
         }
         case TAG_CONTENTS: {
+            const newState = {...state, ...action.name};
+            return newState;
+        }
+        case LOAD_QUERY: {
             const newState = {...state, ...action.name};
             return newState;
         }

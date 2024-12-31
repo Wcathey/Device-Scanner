@@ -4,6 +4,7 @@ import {
   compose,
   combineReducers,
 } from "redux";
+
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import captureReducer from "./capture";

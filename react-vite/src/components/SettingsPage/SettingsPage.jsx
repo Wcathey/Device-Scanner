@@ -1,7 +1,7 @@
 
 function SettingsPage() {
     return (
-        <div className="sp-container">
+        <div className="settings-container">
             <h1>Settings</h1>
         </div>
     )

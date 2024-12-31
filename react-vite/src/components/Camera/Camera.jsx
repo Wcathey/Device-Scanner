@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Webcam from 'react-webcam';
+import { useNavigate } from 'react-router-dom';
 import './Camera.css'
 import { uploadCaptureMetaData } from '../../redux/capture';
 
@@ -18,6 +19,7 @@ const Camera = () => {
     const [tagName, setTagName] = useState("");
     const [errors, setErrors] = useState({});
     const [cameraVisibility, setCameraVisibility] = useState("cam-visible");
+    const navigate = useNavigate();
     const sessionUser = useSelector(state => state.session.user);
 
 
@@ -39,7 +41,8 @@ const Camera = () => {
         if ((sessionUser)) {
             setErrors({});
 
-            dispatch(uploadCaptureMetaData(url, tagName, sessionUser.id)).then((uploadData) => {
+         dispatch(uploadCaptureMetaData(url, tagName, sessionUser.id)).then((uploadData) => {
+                navigate(`/tags/${tagName}`)
                 return uploadData
             })
         }

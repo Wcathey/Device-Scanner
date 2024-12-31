@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getTagContentsByName } from "../../redux/tag";
+import {loadSearchResults} from "../../redux/tag";
+
 
 function Navigation() {
   const navigate = useNavigate();
@@ -11,20 +12,24 @@ function Navigation() {
   const [searchQuery, setSearchQuery] = useState("");
   const [errors, setErrors] = useState({});
 
-  const tags = useSelector(state => state.tag.tags)
+  const query = useSelector(state => state.tag)
+
+
+
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({})
+    const searchResult = await dispatch(loadSearchResults(searchQuery))
 
-    if (tags) {
-
+    if(searchResult.tags.length) {
       navigate(`/tags/${searchQuery}`)
-    } else {
-      setErrors({query: "No images found with that tag name"})
-    }
+      }
+      else {
+        setErrors({query: "No folder found with provided tag name"})
 
+      }
 
   }
   return (
