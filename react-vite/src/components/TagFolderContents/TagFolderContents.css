@@ -19,20 +19,39 @@
     display: grid;
     grid-template-columns: repeat(2, 25%);
     justify-content: space-evenly;
+    gap: 2rem;
+
 
 }
 
 .captures-wrapper li {
     display: grid;
-    color: #66FCF1;
     font-size: 18px;
     gap: 1rem;
     text-align: center;
+
+}
+
+.captures-wrapper p {
+    color: white;
+
 }
 
 .captures-wrapper span {
-    color: rgb(31, 190, 111);
+    color: rgb(48, 241, 145);
     text-decoration: underline;
 }
 
+#capture-image {
+    width: 100%;
+    margin: 0 auto;
+}
 
+#transfer-btn {
+    cursor: pointer;
+    border: 2px solid #f2f2f3;
+    background-color: black;
+    color: #66FCF1;
+    padding: .5rem;
+
+}

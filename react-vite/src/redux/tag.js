@@ -69,6 +69,10 @@ export const loadSearchResults = (query) => async dispatch => {
 
 };
 
+export const updateTagName = (tagId, name) => async dispatch => {
+    
+}
+
 
 
 const initialState = {};

@@ -1,6 +1,5 @@
 import './LandingPage.css'
 import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -19,7 +18,7 @@ function LandingPage() {
 
 
         const closeForm = (e) => {
-            if (ulRef.current && !ulRef.current.contains(e.target)) {
+            if (btnRef.current && !btnRef.current.contains(e.target)) {
                 setShowForm(false);
             }
         };
