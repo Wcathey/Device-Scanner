@@ -5,7 +5,6 @@ import HomePage from '../components/HomePage';
 import AllDevices from '../components/DevicePage/AllDevices';
 import SettingsPage from '../components/SettingsPage';
 import CapturesDirectory from '../components/CapturesPage';
-import CaptureDetailsPage from '../components/CaptureDetailsPage';
 import Camera from '../components/Camera';
 import Layout from './Layout';
 import TagFoldersPage from '../components/TagFoldersPage';
@@ -36,20 +35,7 @@ export const router = createBrowserRouter([
         path:"/captures/scan",
         element: <Camera />,
       },
-      {
-        path: "/captures/tags/"
-      },
-      {
-        path: "/captures/:captureId",
-        element: <Outlet/>,
-        children: [
-          {
-            index: true,
-            element: <CaptureDetailsPage/>
-          }
-        ]
 
-      },
       {
         path: "/tags",
         element: <TagFoldersPage />,

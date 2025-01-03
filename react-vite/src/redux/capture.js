@@ -5,6 +5,7 @@ const CAPTURE_DETAILS = "capture/captureDetails";
 const DELETE_CAPTURE = "capture/deleteCapture";
 const ADD_COMMENT = "capture/addComment";
 
+
 const uploadCapture = (capture) => ({
     type: UPLOAD_CAPTURE,
     capture
@@ -29,6 +30,7 @@ const addComment = (comment) => ({
 const deleteCapture = () => ({
     type: DELETE_CAPTURE
 });
+
 
 export const getAllCaptures = () => async dispatch => {
     const response = await fetch("/api/captures")
@@ -105,7 +107,7 @@ export const deleteCaptureById = (captureId) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(deleteCapture(data));
-        dispatch(loadCaptures());
+       
         return response;
     } else if(response.status < 500) {
         const errorMessages = await response.json();
@@ -115,6 +117,9 @@ export const deleteCaptureById = (captureId) => async dispatch => {
 
     }
 };
+
+
+
 
 const initialState = {};
 
@@ -138,6 +143,7 @@ const captureReducer = (state = initialState, action) => {
             delete newState.deletedCapture;
             return newState;
         }
+
 
         default: return state;
     }

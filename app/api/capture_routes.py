@@ -23,7 +23,7 @@ capture_routes = Blueprint('captures', __name__)
 #get image data from database
 @capture_routes.route('/')
 def capture():
-    
+
     captures = Capture.query.all()
 
     return {'captures': [capture.to_dict() for capture in captures]}

@@ -1,6 +1,5 @@
 const LOAD_TAGS = "tags/loadTags";
 const TAG_CONTENTS = "tags/tagContents";
-const UPDATE_TAG = "tags/updateTag";
 const LOAD_QUERY = "tags/loadQuery";
 
 const loadTags = (tags) => ({
@@ -13,10 +12,6 @@ const tagContents = (name) => ({
     name
 });
 
-const updateTag = (tagId) => ({
-    type: UPDATE_TAG,
-    tagId
-});
 
 const loadQuery = (query) => ({
     type: LOAD_QUERY,
@@ -69,9 +64,6 @@ export const loadSearchResults = (query) => async dispatch => {
 
 };
 
-export const updateTagName = (tagId, name) => async dispatch => {
-    
-}
 
 
 
@@ -91,6 +83,7 @@ const tagReducer = (state = initialState, action) => {
             const newState = {...state, ...action.name};
             return newState;
         }
+
 
         default: return state;
     }
