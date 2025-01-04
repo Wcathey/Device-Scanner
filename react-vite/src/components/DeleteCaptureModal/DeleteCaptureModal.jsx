@@ -16,7 +16,7 @@ function DeleteCaptureModal ({captureId, name}) {
             dispatch(getTagContentsByName(name))
             closeModal()
         }
-    }, [dispatch, deleted])
+    }, [dispatch, deleted, closeModal, name])
 
     const handleDeletion = async (e) => {
         e.preventDefault();

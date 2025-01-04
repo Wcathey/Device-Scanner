@@ -3,13 +3,12 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import HomePage from '../components/HomePage';
 import AllDevices from '../components/DevicePage/AllDevices';
-import SettingsPage from '../components/SettingsPage';
 import CapturesDirectory from '../components/CapturesPage';
 import Camera from '../components/Camera';
 import Layout from './Layout';
 import TagFoldersPage from '../components/TagFoldersPage';
 import TagFolderContents from '../components/TagFolderContents';
-
+import Scanner from '../components/Camera/Scanner';
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +34,10 @@ export const router = createBrowserRouter([
         path:"/captures/scan",
         element: <Camera />,
       },
+      {
+        path: "/captures/document",
+        element: <Scanner/>
+      },
 
       {
         path: "/tags",
@@ -54,11 +57,6 @@ export const router = createBrowserRouter([
         path: "/devices",
         element: <AllDevices />,
       },
-      {
-        path: "/settings",
-        element: <SettingsPage />
-
-      }
     ],
   },
 

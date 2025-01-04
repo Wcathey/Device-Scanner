@@ -27,12 +27,7 @@ function HomePage() {
                             Devices
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/settings">
-                            <IoSettingsOutline className="icon" />
-                            Settings
-                        </NavLink>
-                    </li>
+                  
                 </ul>
             </div>
         </div>

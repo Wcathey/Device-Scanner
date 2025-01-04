@@ -9,7 +9,7 @@ function LandingPage() {
     const btnRef = useRef();
 
     const toggleForm = (e) => {
-        e.stopPropagation();
+        
         setShowForm(!showForm);
     };
 
