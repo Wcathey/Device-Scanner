@@ -21,8 +21,7 @@
 }
 
 .web-capture-btns {
-    display: flex;
-    justify-content: center;
+    display: grid;
     gap: 1rem;
     padding: 10px;
     border-top: 3px solid black;
@@ -35,7 +34,7 @@
 
 .web-capture-btns button {
     padding: 5px;
-    width: 50%;
+    width: 100%;
     border: 1px solid rgb(31, 190, 111);
     font-weight: lighter;
     border-radius: 10px;
@@ -126,3 +125,4 @@
     border-radius: 20px;
 
 }
+
