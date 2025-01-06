@@ -11,7 +11,7 @@ function HomePage() {
             <div className="hp-side-bar">
                 <ul className="hp-sb-list">
                     <li>
-                        <NavLink to="/captures/scan">
+                        <NavLink to="/capture">
                             <FiUploadCloud className="icon" />
                             Capture
                         </NavLink>
@@ -27,7 +27,7 @@ function HomePage() {
                             Devices
                         </NavLink>
                     </li>
-                  
+
                 </ul>
             </div>
         </div>

@@ -107,7 +107,7 @@ export const deleteCaptureById = (captureId) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(deleteCapture(data));
-       
+
         return response;
     } else if(response.status < 500) {
         const errorMessages = await response.json();
@@ -117,6 +117,9 @@ export const deleteCaptureById = (captureId) => async dispatch => {
 
     }
 };
+
+
+
 
 
 

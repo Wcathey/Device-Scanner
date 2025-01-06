@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import eslintPlugin from "vite-plugin-eslint";
 import react from "@vitejs/plugin-react";
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 // https://vitejs.dev/config/
 export default defineConfig((mode) => ({
@@ -10,6 +11,7 @@ export default defineConfig((mode) => ({
       lintOnStart: true,
       failOnError: mode === "production",
     }),
+    nodePolyfills({protocolImports: true})
   ],
   server: {
     open: true,

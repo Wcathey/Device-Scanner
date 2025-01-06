@@ -5,6 +5,7 @@ from flask_login import login_required
 from app.models import db, Capture, Tag
 
 
+
 import cloudinary
 
 
@@ -102,3 +103,4 @@ def upload_capture():
 
     except Exception as e:
         return jsonify({'error': str(e)})
+

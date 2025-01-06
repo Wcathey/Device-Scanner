@@ -4,6 +4,7 @@ import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';
 import './Camera.css'
 import { uploadCaptureMetaData } from '../../redux/capture';
+import Scanner from '../Scanner';
 
 
 const videoConstraints = {
@@ -73,7 +74,10 @@ const Camera = () => {
                 {url && (
                     <div id="image-capture">
                         <form onSubmit={handleUpload}>
-                            <img src={url} alt="Screenshot" />
+                            
+                            <Scanner image={url}/>
+
+
 
                             <div className='tag-details-container'>
                                 <p>Add a tag to upload image</p>
