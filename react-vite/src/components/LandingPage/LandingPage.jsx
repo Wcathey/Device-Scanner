@@ -8,8 +8,8 @@ function LandingPage() {
     const [showForm, setShowForm] = useState(false);
     const btnRef = useRef();
 
-    const toggleForm = (e) => {
-        
+    const toggleForm = () => {
+
         setShowForm(!showForm);
     };
 

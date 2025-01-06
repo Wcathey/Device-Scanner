@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { IoSettingsOutline } from "react-icons/io5";
 import { MdDevicesOther } from "react-icons/md";
 import { FiUploadCloud } from "react-icons/fi";
 

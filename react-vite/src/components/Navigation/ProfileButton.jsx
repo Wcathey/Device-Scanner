@@ -2,9 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ImMenu } from "react-icons/im";
 import { thunkLogout } from "../../redux/session";
-import OpenModalMenuItem from "./OpenModalMenuItem";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+
 
 function ProfileButton() {
   const dispatch = useDispatch();

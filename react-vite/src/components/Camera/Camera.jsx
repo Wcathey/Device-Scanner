@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';

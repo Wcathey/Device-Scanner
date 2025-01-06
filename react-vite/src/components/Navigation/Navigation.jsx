@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { NavLink, useNavigate} from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import {loadSearchResults} from "../../redux/tag";
 
 
@@ -12,7 +12,7 @@ function Navigation() {
   const [searchQuery, setSearchQuery] = useState("");
   const [errors, setErrors] = useState({});
 
-  const query = useSelector(state => state.tag)
+
 
 
 

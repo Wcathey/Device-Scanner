@@ -16,9 +16,7 @@ function TagFoldersPage () {
 
     }, [dispatch]);
 
-    useEffect(() => {
-
-    })
+   
     const preventDuplicateTags = () => {
         allTags.forEach((tag) => {
             if(!tagNames.includes(tag.name)) {
